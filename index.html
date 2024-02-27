@@ -11,10 +11,45 @@
     <h1>Добро пожаловать на мой сайт-портфолио!</h1>
     <p>Привет, меня зовут Веснинская Камилла и я системный аналитик. Я специализируюсь на анализе и оптимизации бизнес-процессов с использованием информационных технологий.</p>
     <h2>Мои статьи по теме:</h2>
-    <ul>
-        <li><a href="article1.html">Основы системного анализа</a></li>
-        <li><a href="article2.html">Аутентификация и авторизация</a></li>
-        <!-- Другие статьи -->
-    </ul>
+    <div class="row" id="app">
+        <!-- Вывод статей -->
+        <div v-for="(article, index) in articles" :key="index" class="col-md-4">
+            <div class="b-news-con__item">
+                <a :href="article.link" class="b-news b-news_theme_1">
+                    <div class="b-news__back" :style="{background: 'url(' + article.image + ')'}"></div>
+                    <div class="b-news__front">
+                        <div class="b-news__main">
+                            <div class="b-news__tags ps-container ps-theme-default">
+                                <div class="b-news__tag" v-for="(tag, index) in article.tags" :key="index">{{ tag }}</div>
+                            </div>
+                            <h2 class="b-news__name">
+                                <span class="b-news__text">{{ article.title }}</span>
+                                <span class="b-news__teams"></span>
+                            </h2>
+                            <div class="b-news__date">{{ article.date }}</div>
+                        </div>
+                        <p class="b-news__more">
+                            <span class="b-news__more-text">{{ article.description }}</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <script>
+        // Загрузка данных статей из JSON файла
+        fetch('articles.json')
+            .then(response => response.json())
+            .then(data => {
+                // Создаем новый экземпляр Vue
+                new Vue({
+                    el: '#app',
+                    data: {
+                        articles: data // Передаем данные статей в Vue
+                    }
+                });
+            });
+    </script>   
 </body>
 </html>
