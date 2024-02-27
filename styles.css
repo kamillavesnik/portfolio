@@ -1,0 +1,6 @@
+body {
+    background-image: url('https://github.com/kamillavesnik/portfolio/blob/main/501.svg');
+    background-size: cover; /* Позволяет масштабировать изображение до того, как оно займет всю доступную область */
+    background-repeat: no-repeat; /* Запрещает повторение фонового изображения */
+    background-attachment: fixed; /* Фиксирует фон, чтобы он не двигался при прокрутке страницы */
+}
